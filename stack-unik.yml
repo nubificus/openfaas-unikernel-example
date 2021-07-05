@@ -1,0 +1,25 @@
+provider:
+  name: openfaas
+  gateway: http://bf:31112
+
+functions:
+  unikhello:
+    skip_build: false
+    image: nubificus/unikernel-example-faas:x86_64
+    fprocess: "/solo5-spt /test_hello.spt"
+    annotations:
+      com.openfaas.profile: x86
+    labels:
+      com.openfaas.scale.min: 1
+      com.openfaas.scale.max: 100
+      com.openfaas.scale.factor: 80
+    limits:
+      cpu: 100m
+    requests:
+      cpu: 100m
+      memory: 128Mi 
+    environment:
+      sleep_duration: 10
+      read_timeout: "5s"
+      write_timeout: "5s"
+      exec_timeout: "60s"

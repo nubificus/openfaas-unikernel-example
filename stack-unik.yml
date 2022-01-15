@@ -5,10 +5,10 @@ provider:
 functions:
   unikhello:
     skip_build: false
-    image: nubificus/unikernel-example-faas:x86_64
-    fprocess: "/solo5-spt /test_hello.spt"
+    image: registry.nubificus.co.uk/fosdem/ofass_unikraft_vaccel
+    fprocess: "bash qemu_run.sh dog.png 1"
     annotations:
-      com.openfaas.profile: x86
+      com.openfaas.profile: gpu
     labels:
       com.openfaas.scale.min: 1
       com.openfaas.scale.max: 100
